@@ -19,16 +19,37 @@ int main() {
 		sleep(1);
 		
 		pid2=fork();
-		if(pid2 == 0){
-		 printf("HIJOa: Soy el proceso hijo y mi pid es: %d\n", getpid());
-                printf("HIJOa: mi padre tiene el pid: %d\n", getppid());
-                
+		if(pid2){//codigo del padre
+		 
+		printf("PADRE: Soy el proceso padre y mi pid es: %d\n", getpid());
+                printf("PADRE: mi hijo tiene el pid: %d\n", pid2);
+               int pid3;
+		pid3 = fork();
+			if(pid3){//codigo padre
+			printf("PADRE: Soy el proceso padre y mi pid es: %d\n", getpid());
+                	printf("PADRE: mi hijo tiene el pid: %d\n", pid3);	
+			sleep(2);
+			}
+			else{//codigo del hijo
+			printf("Hijoc: Soy el proceso hijo y mi pid es: %d\n",getpid());
+                	printf("Hijoc: Mi padre tiene el pid: %d\n", getppid());
+			}
 		}
-		else{
-			printf("PADRE: Soy el proceso padre y mi pid sigue siendo: %d",getppid());
-                printf("PADRE: Mi hijo tiene el pid2: %d\n", pid);
-		x = x + x;
-		sleep(2);
+		else{//codigo del hijo
+			printf("Hijoa: Soy el proceso hijo y mi pid es: %d\n",getpid());
+                	printf("Hijoa: Mi padre tiene el pid: %d\n", getppid());
+			int pnieto;
+			pnieto = fork();
+			if(pnieto){//codigo padre  proceso hijoa
+				printf("Padrea: Soy el proceso hipa y mi pid es: %d\n",getpid());
+                        	printf("Padrea: Mi hijo tiene el pid: %d\n", pnieto);
+				sleep(1);
+			}
+			else{//nieto
+				printf("Nietoa: Soy el proceso hinieto y mi pid es: %d\n",getpid());
+                        	printf("Nietoa: Mi padre tiene el pid: %d\n", getppid());
+
+			}
 		}
 	
 	}
